@@ -15,7 +15,7 @@ export class UserRepository {
             console.error(error)
             console.log(error instanceof Prisma.PrismaClientKnownRequestError, "PErtence" )
             if(error instanceof Prisma.PrismaClientKnownRequestError) {
-                // console.log(error., "tentando achar")
+                
                 if(error.code === "P2002"){
                     return {
                     success: false,
@@ -29,15 +29,37 @@ export class UserRepository {
                     data: null
                 }
             }
-            
-           
-            console.log(error)
              return {
                     success: false,
                     message: "error unknown",
                     data: null
                 }
             
+        }
+    }
+
+    public async findById(id: string): Promise<{success: boolean, message: string, data: Omit<User, "password"> | null}>{
+        try{
+            const user = await db.user.findUnique({
+                where: {
+                    id: id
+                },
+                omit: {
+                    password: true
+                }
+            })
+            return {
+                success: true,
+                message: "user found",
+                data: user
+            }
+        }catch(error){
+            console.error(error)
+            return{
+                success: false,
+                message: "error unknown",
+                data: null
+            }
         }
     }
 }

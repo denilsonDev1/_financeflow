@@ -17,3 +17,21 @@ model User{
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
 }
+
+enum InstitutionType {
+	BANK
+	INVESTMENT_BROKER 
+	FINTECH 
+	OTHER 
+}
+model Instituition {
+    id String @id
+    name String @unique
+    shoortName String
+    type InstitutionType
+    logoUrl String?
+    primaryColor String?
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+}
+

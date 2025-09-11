@@ -5,9 +5,9 @@ export class Instituition {
 	private readonly id: string;
 	private name: string;
 	shortName: string;
-	private logoUrl?: string;
+	private logoUrl: string | null;
 	type: InstitutionType;
-	private primaryColor?: string;
+	private primaryColor: string | null;
 
 	private constructor(data: InstituitionData) {
 		this.id = cuid();
@@ -26,7 +26,7 @@ export class Instituition {
 		return {
 			id: this.id,
 			name: this.name,
-			shortName: this.shortName,
+			shoortName: this.shortName,
 			logoUrl: this.logoUrl,
 			type: this.type,
 			primaryColor: this.primaryColor,

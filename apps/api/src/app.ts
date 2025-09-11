@@ -8,6 +8,7 @@ import {
 } from "fastify-type-provider-zod";
 import { erroHandler } from "./infrastructure/handlers/errorHandler";
 import { router } from "./presentation/http/routes";
+import { instituitionRouter } from "./presentation/http/routes/instituition";
 export const app = fastify({ logger: true });
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
@@ -29,3 +30,4 @@ app.register(fastifySwaggerUi, {
 });
 app.setErrorHandler(erroHandler);
 app.register(router);
+app.register(instituitionRouter, { prefix: "/instituition" });

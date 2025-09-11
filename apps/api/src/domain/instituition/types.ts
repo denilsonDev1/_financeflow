@@ -8,7 +8,7 @@ export enum InstitutionType {
 export type InstituitionData = {
 	name: string;
 	shortName: string;
-	logoUrl?: string;
+	logoUrl: string | null;
 	type: InstitutionType;
-	primaryColor?: string;
+	primaryColor: string | null;
 };
